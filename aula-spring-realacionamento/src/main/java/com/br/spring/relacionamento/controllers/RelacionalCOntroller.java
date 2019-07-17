@@ -1,0 +1,55 @@
+package com.br.spring.relacionamento.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.br.spring.relacionamento.models.LoginModel;
+import com.br.spring.relacionamento.models.UsuarioModel;
+import com.br.spring.relacionamento.services.LoginService;
+import com.br.spring.relacionamento.services.UsuarioService;
+
+@Controller
+public class RelacionalCOntroller {
+	
+	@Autowired
+	private LoginService loginService;
+	private Errors bindingUser;
+	
+	@GetMapping("/cadastro")
+	public ModelAndView exibirUsuarios() {
+		ModelAndView modelAndView = new ModelAndView("usuario.html");
+		return modelAndView;
+	}
+
+	@PostMapping("/")
+	public ModelAndView salvarCadastro(@Valid UsuarioModel user,BindingResult bindingUser,@Valid LoginModel login, BindingResult bindingLogin ) {
+		ModelAndView modelAndView = new ModelAndView("usuario.html");
+		if(bindingUser.hasErrors() || bindingLogin.hasErrors()) {
+			List<String> erros = new ArrayList<String>();
+			
+			for(ObjectError objectError : bindingUser.getAllErrors()) {
+				erros.add(objectError.getDefaultMessage());
+		}
+			
+			for(ObjectError objectError : bindingLogin.getAllErrors()) {
+				erros.add(objectError.getDefaultMessage());
+		}
+			modelAndView.addObject("men",erros);
+	}else {
+		modelAndView.addObject("msn",loginService.cadastrarLogin(user, login));
+		
+	}
+		return modelAndView;
+}
+}

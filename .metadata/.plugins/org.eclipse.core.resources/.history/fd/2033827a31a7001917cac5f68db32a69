@@ -1,0 +1,8 @@
+package com.br.spring.relacionamento.services;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RelacionalService {
+ 
+}

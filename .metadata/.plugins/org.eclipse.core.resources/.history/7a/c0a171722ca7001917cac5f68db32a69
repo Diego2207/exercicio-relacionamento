@@ -1,0 +1,84 @@
+package com.br.spring.relacionamento.models;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class UsuarioModel implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id ;
+	private String nome;
+	private String sobrenome;
+	private String email;
+	private LoginModel login;
+	
+	
+	
+	public UsuarioModel() {
+		super();
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public LoginModel getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(LoginModel login) {
+		this.login = login;
+	}
+		
+	
+}

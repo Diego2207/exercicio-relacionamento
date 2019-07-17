@@ -1,0 +1,20 @@
+package com.br.spring.relacionamento.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.br.spring.relacionamento.services.UsuarioService;
+
+@Controller
+public class RelacionalCOntroller {
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@GetMapping("/")
+	public ModelAndView exibirUsuarios() {
+		ModelAndView modelAndView = new ModelAndView("usuario.html");
+	}
+
+}

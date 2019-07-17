@@ -1,0 +1,22 @@
+package com.br.spring.relacionamento.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jca.cci.core.InteractionCallback;
+import org.springframework.stereotype.Service;
+
+import com.br.spring.relacionamento.models.LoginModel;
+import com.br.spring.relacionamento.repositories.LoginRepository;
+
+@Service
+public class LoginService {
+	@Autowired
+	private LoginRepository loginRepository;
+	
+	public void salvarLogin(LoginModel login) {
+		loginRepository.save(login);
+	}
+	
+	public Iterable<LoginModel> pegarLogins(){
+		return loginRepository.findAll();
+	}
+}
